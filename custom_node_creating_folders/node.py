@@ -8,7 +8,7 @@ class ReflejosResultsOrganizer:
             "required": {
                 "wf_folder_name": ("STRING", {"default": ""}),
                 "exp_folder_name": ("STRING", {"default": ""}),
-                "wf_api_json": ("STRING", {"default": "\{\}"}),
+                "wf_api_json": ("STRING", {"default": '\{\}'}),
                 "wf_params_dict": ("STRING", {"default": "\{\}"}),
             }
         }
@@ -35,10 +35,12 @@ class ReflejosResultsOrganizer:
 
         # Create the file path
         wf_api_path = os.path.join(wf_folder_name, "workflow_api.json")
-        wf_params_path = os.path.join(wf_folder_name, "workflow_params.json")
+        wf_params_path = os.path.join(exp_folder_name, "workflow_params.json")
 
         # Write the content to the file
         json.dump(json.loads(wf_api_json), open(wf_api_path, "w"), indent=4)
         json.dump(json.loads(wf_params_dict), open(wf_params_path, "w"), indent=4)
 
+        print(f"Workflow API saved in {wf_api_path}")
+        print(f"Workflow Params saved in {wf_params_path}")
         return {}
